@@ -1,0 +1,59 @@
+needs app that will run the store
+all the employees need to be able to access it
+
+worried about inventory and money, just assume the users of the system (login required)
+will already be populated with money
+
+don't have to worry about basic ingrediants (e.g. flour) but want to have inventory.
+be able to order in types of bagels, order in single units of shmear, bacon, eggs, beverages, etc.
+
+employee types: bagel chefs, cashier, manager
+
+- access via computer screen and browser, web based
+- wants to have 100 of everything in stock
+- customers should be able to make their own accounts
+ - employee accounts should be approved by manager
+- there is a list of 25 customers we will get access to
+ - first name, last name, email, phone number, money balance, memeber number (ID), password
+- when users make an account, they get $100 in their account
+- users need to be able to place an order, see their balance, and set/reset a password, view status of order, add money
+- in chef accounts, they can see the orders placed and update the status on that order
+- cashiers can see the status of the orders as well, type in customer's ID number for transaction purposes
+- customers can order in person, but the cashier will direct them to a kiosk... Everything goes through the online
+
+- cashiers handle the shmears and beverages
+- chefs provide the bagels and the sandwiches
+- inventory updates when the chashier finalizes the order as well as customer money
+- customer can choose to do the same order again (order history for customers?)
+- if a customer buys a dozen bagels, they should get 1 for free (rewards program type thing)
+
+- send customers an email when their order is ready
+- website only needs to handle one physical storefront
+
+- customer/employee login needs to be separated. Customers see an ordering menu, employees see something different
+- manager can add inventory. Has an option to fill up inventory to max (100) of each bagel type, spread, etc.
+ - can update inventory of individual items or can say that they're all filled back up
+- menu should be able to be updatable and dynamic
+ - add new bagel types, shmears, etc. and remove them
+
+- would like to have orders ready within 5 minutes
+
+- order status: ordered, preparing, ready, completed
+
+- if employees want to order from their account as well, they should be able to
+
+- keep track of expiration for products, maybe have a deal for a product that is going bad
+
+- keep track of analytics for what kind of items are being ordered, their popularity, etc., viewable by manager in a statistics page
+
+- cashier has the ability to trash an order if the customer doesn't come to pick it up
+- chef can throw away inventory. (e.g. the cheesey bagels are moldy)
+
+- accounts can work off of a role system, give x accounts so many roles based on what they can do
+
+- customers should be able to cancel their order unless it the chefs have begun making it, then they can no longer do that
+~~~~~~~~~~~~~~
+
+work on analyzing these requirements and separating them into different groups.
+What is a customer requirement, business requirement, etc.
+What items are must, should, could, won't.
