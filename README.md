@@ -19,7 +19,7 @@ The project will be done using python and django. Any IDE may be used. Team memb
 
 -Unit testing instructions
 The unit testing will be done to test each individual method for bugs.
-Testing must:
+Tests must:
 place orders,
 manage orders,
 manage funds, 
@@ -28,5 +28,6 @@ change order status,
 manage inventory.
 
 -System testing instructions
+For best results, the system testing will be done by a human user. This user will go through the methods listed in unit testing in any order, to test each funtion as well as ensuring that the system will not crash in the interim.
 
 -Other development notes, as needed
