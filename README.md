@@ -1,6 +1,8 @@
+I DOnt Think We hAve a NaME
+
 -An explanation of the organization and name scheme for the workspace
 
-Dan's Bagels - I DOnt Think We hAve a NaME
+Dan's Bagels - 
 Luke Barton
 Jacob Pope
 Braeden Stewart
