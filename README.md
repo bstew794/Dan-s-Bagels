@@ -21,9 +21,13 @@ The project will be done using python and django. Any IDE may be used. Team memb
 -Build instructions
 To run the high fidelity prototype, navigate the command line to hifi/hifiPrototype.
 Run the commands:
+
 $ python manage.py makemigrations
+
 $ python manage.py migrate
+
 $ python manage.py runserver
+
 The site should be hosted at http://localhost:8000/BagelTest/
 
 Build instructions for the main project will be determined in the future
