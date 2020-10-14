@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'BagelTest/style.css' %}">
+    <title>Employee Page</title>
+  </head>
+  <body>
+    <h1>Dan's Bagels</h1>
+    <h2>Active Orders:</h2>
+    {% if order_list %}
+      <ul>
+        {% for order in order_list %}
+          <div class="red stuff-box">
+            <h3>{{order.customer_name}}</h3>
+            <h3>{{order.pickup_time}}</h3>
+          </div>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <h3> No Orders Currently </h3>
+    {% endif %}
+  </body>
+</html>
