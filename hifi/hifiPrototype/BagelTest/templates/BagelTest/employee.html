@@ -5,11 +5,11 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'BagelTest/style.css' %}">
     <title>Employee Page</title>
   </head>
   <body>
     <h1>Dan's Bagels</h1>
+    <a href="/BagelTest/"> Customer Page</a>
     <h2>Active Orders:</h2>
     {% if order_list %}
       <ul>
@@ -17,6 +17,8 @@
           <div class="red stuff-box">
             <h3>{{order.customer_name}}</h3>
             <h3>{{order.pickup_time}}</h3>
+            <h3>{{order.Items.item_name}}</h3>
+            <br>
           </div>
         {% endfor %}
       </ul>

@@ -5,19 +5,29 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'BagelTest/style.css' %}">
     <title>Customer Page</title>
   </head>
   <body>
     <h1>Dan's Bagels</h1>
+    <a href="/BagelTest/employee/"> Employee Page</a>
+
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
     <h2>Place Order:</h2>
     {% if item_list %}
+      <form action={% url 'purchase' %} method="post">
+      {% csrf_token %}
+
       {% for item in item_list %}
         <input type="radio" name="item" id="item{{ forloop.counter }}"
       value="{{ item.id }}">
         <label for="item{{ forloop.counter }}">{{ item.item_name }}</label>
         <br>
       {% endfor %}
+
+      <input type="submit" value="Purchase">
+
+    </form>
     {% else %}
       <h3> No Menu Items Currently </h3>
     {% endif %}
