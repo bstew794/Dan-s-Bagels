@@ -7,8 +7,14 @@ from django.utils import timezone
 
 # Create your views here.
 def customer(request):
-
     item_list = Menu_Item.objects.all()
+    if len(item_list) == 0:
+        for i in range(5):
+            s = "Menu Item " + str(i)
+            m = Menu_Item(item_name=s)
+            m.save()
+        return HttpResponseRedirect(reverse('customer'))
+        
     context = {'item_list': item_list,}
     return render(request, 'BagelTest/customer.html', context)
 
