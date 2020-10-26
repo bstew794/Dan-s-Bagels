@@ -48,3 +48,5 @@ manage inventory.
 For best results, the system testing will be done by a human user. This user will go through the methods listed in unit testing in any order, to test each funtion as well as ensuring that the system will not crash in the interim.
 
 -Other development notes, as needed
+
+All file names will be written in lower-camelcase.
