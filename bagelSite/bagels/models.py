@@ -12,6 +12,15 @@ class Profile(models.Model):
     memberNumber = models.CharField(max_length=50, default='')
     cardNumber = models.CharField(max_length=50, default='')
     accountBalance = models.DecimalField(decimal_places=2)
+    
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
 class Order(models.Model):
     customer = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='orders')
