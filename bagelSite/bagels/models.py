@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+# Profile is connected to a user and serves to add more parameters and maybe methods later on
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     phoneNumber = models.CharField(max_length=50, default='')
@@ -14,7 +15,9 @@ class Profile(models.Model):
     
     def __str__(self):
         return self.user.username
-    
+
+# the next two functions make it so an instance of Profile 
+# is made when an instance of User is created.
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -38,6 +41,7 @@ class Order(models.Model):
         return f'{self.customerName} ({self.pickUpTime})'
     
 
+# basically what is on our menu, and what we are selling.
 class InventoryItem(models.Model):
     price = models.DecimalField(decimal_places=2)
     stock = models.IngeterField()
