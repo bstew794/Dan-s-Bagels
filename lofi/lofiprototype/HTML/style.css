@@ -1,0 +1,44 @@
+body {
+	background-image: url('table.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	font-family: "Gill Sans", sans-serif;
+}
+
+h1 {
+	text-align: center;
+	/*color: white;*/
+}
+
+h2 {
+	font-style: italic;
+	text-align: center;
+}
+
+#top {
+	background-color: rgb(251, 226, 169);
+	width:100%;
+	margin:0px;
+	padding:0px;
+}
+
+.post {
+	background: rgba(251, 247, 226, .7);
+	margin:12px;
+	padding-bottom:1px;
+	padding-left:0x;
+	padding-right:0x;
+	width:250px;
+	display:inline-block;
+}
+
+img {
+	display: inline;
+}
+
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 10%;
+}
