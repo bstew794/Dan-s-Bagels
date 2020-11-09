@@ -11,7 +11,7 @@ Jonas Williams-Gilchrist
 -Version-control procedures
 
 Each team member has access to all documentation uploaded to Github.
-Each team member has instructions for which documentation they should change, as decided in meetings, held at least weekly after class (Mondays, Wednesdays, Fridays after 2:20) or as needed.
+Each team member has instructions for which documentation they should change, as decided in meetings, held at least weekly after class (Mondays, Wednesdays, Fridays after 1:30) or as needed.
 Unchanged documents are also available on Github.
 
 -Tool stack description and setup procedure
@@ -19,7 +19,7 @@ Unchanged documents are also available on Github.
 The project will be done using python and django. Any IDE may be used. Team members will upload their assigned portion of code to the Github repository.
 
 -Build instructions
-To run the high fidelity prototype, navigate the command line to hifi/hifiPrototype.
+To run the project, navigate the command line to bagelSite/bagelSite.
 Run the commands:
 
 $ python manage.py makemigrations
