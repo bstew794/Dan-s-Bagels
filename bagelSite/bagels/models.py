@@ -8,10 +8,9 @@ from django.contrib.auth.models import User
 # Profile is connected to a user and serves to add more parameters and maybe methods later on
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    phoneNumber = models.CharField(max_length=50, default='')
-    memberNumber = models.CharField(max_length=50, default='')
-    cardNumber = models.CharField(max_length=50, default='')
-    accountBalance = models.DecimalField(decimal_places=2)
+    phone_number = models.CharField(max_length=50, default='')
+    member_number = models.CharField(max_length=50, default='')
+    account_balance = models.DecimalField(decimal_places=2)
     
     def __str__(self):
         return self.user.username
@@ -30,12 +29,12 @@ def save_user_profile(sender, instance, **kwargs):
 # An Order can only have one Profile but a Profile can have many Orders
 class Order(models.Model):
     customer = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='orders')
-    customerName = models.CharField(max_length=50, default='')
-    pickUpTime = models.DateTimeField('pickUpTime')
+    customer_name = models.CharField(max_length=50, default='')
+    pickUp_time = models.DateTimeField('pickUpTime')
     items = models.CharField(default='[]')
-    totalCost = models.DecimalField(decimal_places=2)
-    isPrepared = models.BooleanField()
-    isFufilled = models.BooleanField()
+    total_cost = models.DecimalField(decimal_places=2)
+    is_prepared = models.BooleanField()
+    is_fufilled = models.BooleanField()
     
     def __str__(self):
         return f'{self.customerName} ({self.pickUpTime})'
@@ -47,7 +46,7 @@ class InventoryItem(models.Model):
     stock = models.IngeterField()
     name = models.CharField(max_length=50, default='')
     description = models.TextField()
-    allegryInfo = models.CharField(max_length=50, default='')
+    allegry_info = models.CharField(max_length=50, default='')
     
     ITEMTYPE = (
         ('ba', 'bagel'),
