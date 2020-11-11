@@ -13,7 +13,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     phone_number = models.CharField(max_length=15, default='')
     member_number = models.CharField(max_length=50, default='')
-    account_balance = models.DecimalField(decimal_places=2, default='0.00')
+    account_balance = models.DecimalField(max_digits=9, decimal_places=2, default='0.00')
+    # Perfectly balanced as all things should be.
 
     def __str__(self):
         return self.user.username
@@ -37,8 +38,8 @@ class Order(models.Model):
     customer = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='orders')
     customer_name = models.CharField(max_length=50, default='')
     pickUp_time = models.DateTimeField('pickUpTime')
-    items = models.CharField(default='[]')
-    total_cost = models.DecimalField(decimal_places=2)
+    items = models.CharField(max_length=1000000, default='[]')
+    total_cost = models.DecimalField(max_digits=6, decimal_places=2)
     is_prepared = models.BooleanField()
     is_fufilled = models.BooleanField()
 
@@ -48,7 +49,7 @@ class Order(models.Model):
 
 # basically what is on our menu, and what we are selling.
 class InventoryItem(models.Model):
-    price = models.DecimalField(decimal_places=2)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
     stock = models.IntegerField()
     name = models.CharField(max_length=50, default='')
     description = models.TextField()
