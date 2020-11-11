@@ -1,4 +1,5 @@
 body {
+	margin: 0;
 	background-image: url('table.jpg');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -16,20 +17,32 @@ h2 {
 }
 
 #top {
-	background-color: rgb(251, 226, 169);
+	background-color: rgba(251, 247, 226, .9);
 	width:100%;
-	margin:0px;
 	padding:0px;
+	margin-top:20px;
+	position:fixed;
+	z-index: 1;
+}
+
+.dividing {
+	height:200px;
 }
 
 .post {
-	background: rgba(251, 247, 226, .7);
-	margin:12px;
-	padding-bottom:1px;
-	padding-left:0x;
-	padding-right:0x;
+	background: rgba(251, 247, 226, .8);
+	margin:4%;
+	/*margin-top:10%;*/
+	padding-bottom:2px;
+	padding-left:2x;
+	padding-right:2x;
 	width:250px;
 	display:inline-block;
+}
+
+.thumbnail {
+	max-width:100%;
+    height:auto;
 }
 
 img {
