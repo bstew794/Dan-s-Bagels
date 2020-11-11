@@ -24,4 +24,4 @@ def signUp(request):
     else:
         form = SignUpForm()
         
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'bagels/signup.html', {'form': form})
