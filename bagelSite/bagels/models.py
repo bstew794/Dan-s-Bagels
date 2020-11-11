@@ -49,7 +49,7 @@ class Order(models.Model):
 # basically what is on our menu, and what we are selling.
 class InventoryItem(models.Model):
     price = models.DecimalField(decimal_places=2)
-    stock = models.IngeterField()
+    stock = models.IntegerField()
     name = models.CharField(max_length=50, default='')
     description = models.TextField()
     allegry_info = models.CharField(max_length=50, default='')
