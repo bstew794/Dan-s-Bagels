@@ -1,6 +1,6 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from bagelSite.bagels.forms import SignUpForm
+from .forms import SignUpForm
 
 # Create your views here.
 
