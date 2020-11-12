@@ -19,7 +19,7 @@ def signUp(request):
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
             
-            return redirect('BLANK')
+            return redirect('home')
         
     else:
         form = SignUpForm()
