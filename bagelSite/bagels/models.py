@@ -37,14 +37,14 @@ def save_user_profile(sender, instance, **kwargs):
 class Order(models.Model):
     customer = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='orders')
     customer_name = models.CharField(max_length=50, default='')
-    pickUp_time = models.DateTimeField('pickUpTime')
+    pickup_time = models.DateTimeField('pickUpTime')
     items = models.CharField(max_length=1000000, default='[]')
     total_cost = models.DecimalField(max_digits=6, decimal_places=2)
     is_prepared = models.BooleanField()
     is_fufilled = models.BooleanField()
 
     def __str__(self):
-        return f'{self.customerName} ({self.pickUpTime})'
+        return f'{self.customer_name} ({self.pickup_time})'
 
 
 # basically what is on our menu, and what we are selling.
