@@ -1,0 +1,38 @@
+{% block content %}
+    {% if perms.bagels.can_view_current_orders %}
+    {% load string_to_list %}
+    <h1>Current Orders</h1>
+    {% if current_orders_list %}
+        <div>
+            {% for order in current_orders_list %}
+                <h4>{{ order.customer_name }}</h4>
+                <h4>{{ order.pickup_time}}</h4>
+                {% string_to_list order.items as item_list %}
+                <ul>
+                    {% for item in item_list %}
+                        <li>
+                            <p>{{ item }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <h6>${{ order.total_cost }}</h6>
+                {% if order.is_prepared %}
+                    <h6>PREPARED</h6>
+                {% else %}
+                    <h6>PREPARING</h6>
+                    {% if perms.bagels.can_prepare_order %}
+                        <button onclick="location.href = '{% url 'prepare_order' order.id %}'">Prepare</button>
+                    {% endif %}
+                {% endif %}
+                {% if perms.bagels.can_fulfill_order %}
+                    <button onclick="location.href = '{% url 'fulfill_order' order.id %}'">Fulfill</button>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>There are no currently open orders.</p>
+    {% endif %}
+    {% else %}
+        <p>You do not have permission to view this page, please login in again with an account that does</p>
+    {% endif %}
+{% endblock %}
