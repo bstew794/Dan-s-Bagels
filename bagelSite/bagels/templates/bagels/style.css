@@ -40,6 +40,7 @@ h2 {
 	padding-right:2x;
 	width:250px;
 	display:inline-block;
+	box-shadow: 10px 10px 5px grey;
 }
 
 .portal {
