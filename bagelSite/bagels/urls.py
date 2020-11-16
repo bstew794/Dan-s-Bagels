@@ -17,6 +17,8 @@ urlpatterns = [
          name='password_reset_confirm'),
     path('reset/done', auth_views.PasswordResetCompleteView.as_view(template_name='bagels/password_reset_complete.html'),
          name='password_reset_complete'),
-
-    path('index', views.mainMenu, name='home' ),
+    path('current_orders', views.CurrentOrderListView.as_view(), name='current_orders'),
+    path('fulfill_order/<int:order_id>/', views.fulfillOrder, name='fulfill_order'),
+    path('prepare_order/<int:order_id>/', views.prepareOrder, name='prepare_order'),
+    path('index', views.mainMenu, name='index'),
 ]
