@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
 <head>
 	<meta charset="UTF-8">
-	<link rel = "stylesheet" type = "text/css" href = "style.css" />
+	<link rel = "stylesheet" type = "text/css" href = "{% static 'bagels/style.css' %}" />
 	<title>Dan's Bagels</title>
 </head>
 
 <body>
 	<div id="top">
 	</div>
-	<img src="logo.png" class="logo">
+	<img src="{% static 'bagels/logo.png' %}" class="logo">
 	<div>
 	<div class="dividing">
 	</div>
 	<h1>Menu</h1>
 	<span class="post">
 		<h2>Bagels</h2>
-		<img src="bagel.jpg" class="thumbnail">
+		<img src="{% static 'bagels/bagel.jpg' %}" class="thumbnail">
 	</span>
 
 	<span class="post">
 		<h2>Schmears</h2>
-		<img src="schmear.jpg" class="thumbnail">
+		<img src="{% static 'bagels/schmear.jpg' %}" class="thumbnail">
 	</span>
 
 	<span class="post">
 		<h2>Sammiches</h2>
-		<img src="sammich.jpg" class="thumbnail">
+		<img src="{% static 'bagels/sammich.jpg' %}" class="thumbnail">
 	</span>
 
 	<span class="post">
 		<h2>Beverages</h2>
-		<img src="beverage.jpg" class="thumbnail">
+		<img src="{% static 'bagels/beverage.jpg' %}" class="thumbnail">
 	</span>
 
 	</div>
