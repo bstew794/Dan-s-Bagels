@@ -84,3 +84,11 @@ class CurrentOrderListView(generic.ListView):
 
     def get_queryset(self):
         return Order.objects.filter(is_fufilled=False)
+
+
+def profile(request):
+    if request.user.is_authenticated:
+        user = request.user
+        return render(request, 'bagels/profile.html', {"user": user})
+    else:
+        return redirect("login")

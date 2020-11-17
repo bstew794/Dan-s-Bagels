@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<title>User Profile</title>
+</head>
+
+<body>
+    <h1>
+        Welcome {{ user.username }}!
+    </h1>
+    <h2>
+        View your account information here
+    </h2>
+    <h3>
+        First Name: {{ user.first_name }} <br>
+        Last Name:  {{ user.last_name }} <br>
+        Email: {{ user.email }} <br>
+        Phone Number: {{ user.profile.phone_number }} <br>
+        Member Number: {{ user.profile.member_number }} <br>
+        Account Balance: {{ user.profile.account_balance }} <br>
+    </h3>
+</body>
+
+</html>

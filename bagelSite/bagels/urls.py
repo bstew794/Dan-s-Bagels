@@ -22,4 +22,5 @@ urlpatterns = [
     path('fulfill_order/<int:order_id>/', views.fulfillOrder, name='fulfill_order'),
     path('prepare_order/<int:order_id>/', views.prepareOrder, name='prepare_order'),
     path('index', views.mainMenu, name='home'),
+    path("profile", views.profile, name="profile")
 ]
