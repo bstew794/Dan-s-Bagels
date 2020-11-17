@@ -22,8 +22,10 @@
 		{% if ba %}
 
 		{% for item in ba %}
+		<div class="">
 			<input type="checkbox" name="item" id="item{{ forloop.counter }}" value="{{ item.id }}">
 			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
+		</div>
 		{% endfor %}
 		{% endif %}
 	</span>
@@ -31,16 +33,47 @@
 	<span class="post">
 		<h2>Schmears</h2>
 		<img src="{% static 'bagels/schmear.jpg' %}" class="thumbnail">
+		<br>
+		{% if sc %}
+
+		{% for item in sc %}
+		<div class="">
+			<input type="checkbox" name="item" id="item{{ forloop.counter }}" value="{{ item.id }}">
+			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
+		</div>
+		{% endfor %}
+		{% endif %}
 	</span>
 
 	<span class="post">
 		<h2>Sammiches</h2>
 		<img src="{% static 'bagels/sammich.jpg' %}" class="thumbnail">
+		<br>
+		{% if sa %}
+
+		{% for item in sa %}
+		<div class="">
+			<input type="checkbox" name="item" id="item{{ forloop.counter }}" value="{{ item.id }}">
+			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
+		</div>
+
+		{% endfor %}
+		{% endif %}
 	</span>
 
 	<span class="post">
 		<h2>Beverages</h2>
 		<img src="{% static 'bagels/beverage.jpg' %}" class="thumbnail">
+		<br>
+		{% if be %}
+
+		{% for item in be %}
+		<div class="">
+			<input type="checkbox" name="item" id="item{{ forloop.counter }}" value="{{ item.id }}">
+			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
+		</div>
+		{% endfor %}
+		{% endif %}
 	</span>
 
 	</div>
