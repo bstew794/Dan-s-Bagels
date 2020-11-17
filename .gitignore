@@ -3,6 +3,7 @@ venv
 .vscode
 __pycache__
 *.pyc
+db.sqlite3
 *.csv
 *.zip
 *.bak
