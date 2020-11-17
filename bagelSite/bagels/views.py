@@ -51,10 +51,14 @@ def prepareOrder(request, order_id):
     return redirect('current_orders')
 
 
-def mainMenu(request):
-    menu_list = InventoryItem.objects.all()
+def home(request):
+    ba_list = InventoryItem.objects.filter(type='ba')
+    be_list = InventoryItem.objects.filter(type='be')
+    sc_list = InventoryItem.objects.filter(type='sc')
+    sa_list = InventoryItem.objects.filter(type='sa')
 
-    context = {'inventory_list': menu_list,}
+    context = {'ba': ba_list, 'be' : be_list, 'sc' : sc_list, 'sa' : sa_list,
+        'user': request.user}
     return render(request, 'bagels/index.html', context)
 
 # def placeOrder(request):

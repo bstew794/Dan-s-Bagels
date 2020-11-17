@@ -18,6 +18,14 @@
 	<span class="post">
 		<h2>Bagels</h2>
 		<img src="{% static 'bagels/bagel.jpg' %}" class="thumbnail">
+		<br>
+		{% if ba %}
+
+		{% for item in ba %}
+			<input type="checkbox" name="item" id="item{{ forloop.counter }}" value="{{ item.id }}">
+			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
+		{% endfor %}
+		{% endif %}
 	</span>
 
 	<span class="post">
