@@ -77,9 +77,15 @@ img {
 	position:fixed;
 }
 
+.center {
+	margin: auto;
+width: 50%;
+border: 3px solid red;
+padding: 10px;
+}
+
 .plus-btn {
 }
 
 .minus-btn {
 }
-	

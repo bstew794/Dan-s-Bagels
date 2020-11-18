@@ -22,5 +22,6 @@ urlpatterns = [
     path('fulfill_order/<int:order_id>/', views.fulfillOrder, name='fulfill_order'),
     path('prepare_order/<int:order_id>/', views.prepareOrder, name='prepare_order'),
     path('index', views.home, name='home'),
-    path("profile", views.profile, name="profile")
+    path("profile", views.profile, name="profile"),
+    path("purchase", views.placeOrder, name="purchase"),
 ]

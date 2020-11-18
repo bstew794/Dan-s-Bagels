@@ -2,13 +2,14 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.views import generic
 from .forms import SignUpForm
-from .models import Order, InventoryItem
+from .models import Order, InventoryItem, Profile
+from django.utils import timezone
+from decimal import *
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 
-
-def index(request):
-    return render(request, 'bagels/index.html')
 
 
 def signUp(request):
@@ -61,24 +62,41 @@ def home(request):
         'user': request.user}
     return render(request, 'bagels/index.html', context)
 
-# def placeOrder(request):
-#     ordered = []
-#     try:
-#         cust = Profile.objects.get(pk=request.POST['customer'])
-#         order_string = request.POST.get("items")
-#         order_items = order_string.split(', ')
-#         for item in order_items
-#
-#     except Exception as e:
-#         return render(request, 'bagels/index.html', {
-#             'item_list': InventoryItem.objects.all(),
-#             'error_message': "Please select an item in order to place an order"
-#         })
-#     else:
-#
-#
-#         try:
-#             for
+def placeOrder(request):
+    string_list = ', '
+    try:
+        current_user = Profile.objects.filter(user=request.user).first()
+        chosen_items = request.POST.getlist('item')
+        object_list = []
+        for item in chosen_items:
+            i = InventoryItem.objects.get(pk=item)
+            object_list.append(i)
+
+    except (KeyError, Menu_Item.DoesNotExist):
+        ba_list = InventoryItem.objects.filter(type='ba')
+        be_list = InventoryItem.objects.filter(type='be')
+        sc_list = InventoryItem.objects.filter(type='sc')
+        sa_list = InventoryItem.objects.filter(type='sa')
+
+        context = {'ba': ba_list, 'be' : be_list, 'sc' : sc_list, 'sa' : sa_list,
+            'user': request.user}
+        return render(request, 'home', context)
+
+    else:
+        cost = 0.00
+        for o in object_list:
+            cost += float(o.price)
+        string_list = string_list.join([elem.name for elem in object_list])
+
+        new_order = Order(customer=current_user,
+        customer_name=request.user.first_name, pickup_time=timezone.now(),
+        items=string_list, total_cost=cost, is_prepared=False, is_fufilled=False)
+        new_order.save()
+        return HttpResponseRedirect(reverse('profile'))
+
+
+
+
 
 
 class CurrentOrderListView(generic.ListView):
