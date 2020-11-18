@@ -12,6 +12,8 @@ def index(request):
 
 
 def signUp(request):
+    if request.user.is_authenticated:
+        return redirect('home')
 
     if request.method == 'POST':
         form = SignUpForm(request.POST)

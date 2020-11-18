@@ -1,10 +1,14 @@
 {% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-  </form>
-<a href="{% url 'password_reset' %}">Forgot Password?</a>
-<a href="{% url 'signup' %}">New to Dan's Bagels?</a>
+  {% if user.is_authenticated %}
+    <p>You are already logged in, go back to the homepage.</p>
+  {% else %}
+    <h2>Login</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'password_reset' %}">Forgot Password?</a>
+    <a href="{% url 'signup' %}">New to Dan's Bagels?</a>
+  {% endif %}
 {% endblock %}
