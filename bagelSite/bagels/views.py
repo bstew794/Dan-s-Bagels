@@ -13,6 +13,8 @@ from django.urls import reverse
 
 
 def signUp(request):
+    if request.user.is_authenticated:
+        return redirect('home')
 
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -32,6 +34,18 @@ def signUp(request):
         form = SignUpForm()
 
     return render(request, 'bagels/signup.html', {'form': form})
+
+
+def cancelOrder(request, order_id):
+    order = Order.objects.get(pk=order_id)
+
+    request.user.profile.account_balance += order.total_cost
+    request.user.save()
+
+    order.is_fufilled = True
+    order.save()
+
+    return redirect('current_orders')
 
 
 def fulfillOrder(request, order_id):
