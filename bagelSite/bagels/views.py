@@ -35,6 +35,18 @@ def signUp(request):
     return render(request, 'bagels/signup.html', {'form': form})
 
 
+def cancelOrder(request, order_id):
+    order = Order.objects.get(pk=order_id)
+
+    request.user.profile.account_balance += order.total_cost
+    request.user.save()
+
+    order.is_fufilled = True
+    order.save()
+
+    return redirect('current_orders')
+
+
 def fulfillOrder(request, order_id):
     order = Order.objects.get(pk=order_id)
 

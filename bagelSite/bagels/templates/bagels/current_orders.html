@@ -25,7 +25,10 @@
                     {% endif %}
                 {% endif %}
                 {% if perms.bagels.can_fulfill_order %}
-                    <button onclick="location.href = '{% url 'fulfill_order' order.id %}'">Fulfill</button>
+                    <button onclick="location.href = '{% url 'cancel_order' order.id %}'">Cancel</button>
+                    {% if order.is_prepared %}
+                        <button onclick="location.href = '{% url 'fulfill_order' order.id %}'">Fulfill</button>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         </div>
