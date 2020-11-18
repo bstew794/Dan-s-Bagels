@@ -8,8 +8,8 @@ from decimal import *
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.urls import reverse
 
-# Create your views here.
 
+# Create your views here.
 
 
 def signUp(request):
@@ -23,6 +23,7 @@ def signUp(request):
             user = form.save()
             user.refresh_from_db()
             user.profile.phone_number = form.cleaned_data.get('phone_number')
+            user.profile.member_number = user.profile.phone_number + str(int(round(user.date_joined.timestamp() * 1000)))
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
@@ -72,9 +73,10 @@ def home(request):
     sc_list = InventoryItem.objects.filter(type='sc')
     sa_list = InventoryItem.objects.filter(type='sa')
 
-    context = {'ba': ba_list, 'be' : be_list, 'sc' : sc_list, 'sa' : sa_list,
-        'user': request.user}
+    context = {'ba': ba_list, 'be': be_list, 'sc': sc_list, 'sa': sa_list,
+               'user': request.user}
     return render(request, 'bagels/index.html', context)
+
 
 def placeOrder(request):
     string_list = ', '
@@ -92,8 +94,8 @@ def placeOrder(request):
         sc_list = InventoryItem.objects.filter(type='sc')
         sa_list = InventoryItem.objects.filter(type='sa')
 
-        context = {'ba': ba_list, 'be' : be_list, 'sc' : sc_list, 'sa' : sa_list,
-            'user': request.user}
+        context = {'ba': ba_list, 'be': be_list, 'sc': sc_list, 'sa': sa_list,
+                   'user': request.user}
         return render(request, 'home', context)
 
     else:
@@ -103,14 +105,11 @@ def placeOrder(request):
         string_list = string_list.join([elem.name for elem in object_list])
 
         new_order = Order(customer=current_user,
-        customer_name=request.user.first_name, pickup_time=timezone.now(),
-        items=string_list, total_cost=cost, is_prepared=False, is_fufilled=False)
+                          customer_name=request.user.first_name, pickup_time=timezone.now(),
+                          items=string_list, total_cost=cost, is_prepared=False, is_fufilled=False)
+
         new_order.save()
         return HttpResponseRedirect(reverse('profile'))
-
-
-
-
 
 
 class CurrentOrderListView(generic.ListView):
