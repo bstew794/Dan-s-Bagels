@@ -23,6 +23,7 @@ def signUp(request):
             user = form.save()
             user.refresh_from_db()
             user.profile.phone_number = form.cleaned_data.get('phone_number')
+            user.profile.member_number = user.profile.phone_number + str(int(round(user.date_joined.timestamp() * 1000)))
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
