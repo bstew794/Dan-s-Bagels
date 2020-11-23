@@ -23,7 +23,7 @@
         Email: {{ user.email }} <br>
         Phone Number: {{ user.profile.phone_number }} <br>
         Member Number: {{ user.profile.member_number }} <br>
-        Account Balance: {{ user.profile.account_balance }} <br>
+        Account Balance: ${{ user.profile.account_balance }} <br>
     </h3>
 
     <!-- Edit Account Information -->
@@ -47,16 +47,16 @@
     <h3>
         {% for order in orders %}
             {% string_to_list order.items as item_list %}
-            Order {{ order.id }} -- ${{ order.total_cost }} -- Pickup at {{ order.pickup_time }}
+            Order {{ order.id }} -- ${{ order.total_cost }} -- Pickup on {{ order.pickup_time }}
             <ul>
             {% for item in item_list %}
                 <li>{{ item }}</li>
             {% endfor %}
             </ul>
             {% if not order.is_prepared and not order.is_fufilled %}
-                <button onclick="location.href = '{% url 'remove_order' order.id %}'">Remove Order</button>
+                <button onclick="location.href = '{% url 'remove_order' order.id %}'">Refund Order</button>
             {% else %}
-                NOT CANCELABLE
+                <button onclick="location.href = '{% url 'remove_order' order.id %}'">Remove Order</button>
             {% endif %}
             <br><br>
         {% endfor %}
