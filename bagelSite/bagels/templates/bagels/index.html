@@ -9,6 +9,21 @@
 
 <body>
 	<div id="top">
+	<button class="site_link" type="button" name="button" onclick="window.location.href='index';">
+	<h4>Menu</h4>
+	</button>
+	<button class="site_link" type="button" name="button" onclick="window.location.href='cart';">
+	<h4>Cart</h4>
+	</button>
+	<button class="site_link" type="button" name="button" onclick="window.location.href='login';">
+	<h4>Log In</h4>
+	</button>
+	<button class="site_link" type="button" name="button" onclick="window.location.href='profile';">
+	<h4>Profile</h4>
+	</button>
+	<button class="site_link" type="button" name="button" onclick="window.location.href='signup';">
+	<h4>Sign Up</h4>
+	</button>
 	</div>
 	<img src="{% static 'bagels/logo.png' %}" class="logo">
 	<div>
@@ -31,6 +46,8 @@
 			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
 		</div>
 		{% endfor %}
+		{% else %}
+		<h6>No Items Currently</h6>
 		{% endif %}
 	</span>
 
@@ -46,6 +63,8 @@
 			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
 		</div>
 		{% endfor %}
+		{% else %}
+		<h6>No Items Currently</h6>
 		{% endif %}
 	</span>
 
@@ -62,6 +81,8 @@
 		</div>
 
 		{% endfor %}
+		{% else %}
+		<h6>No Items Currently</h6>
 		{% endif %}
 	</span>
 
@@ -77,6 +98,8 @@
 			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
 		</div>
 		{% endfor %}
+		{% else %}
+		<h6>No Items Currently</h6>
 		{% endif %}
 	</span>
 

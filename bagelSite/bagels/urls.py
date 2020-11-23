@@ -25,4 +25,6 @@ urlpatterns = [
     path('index', views.home, name='home'),
     path("profile", views.profile, name="profile"),
     path("purchase", views.placeOrder, name="purchase"),
+    path("edit", views.edit, name="edit"),
+    path('remove_order/<int:order_id>/', views.remove_order, name='remove_order'),
 ]
