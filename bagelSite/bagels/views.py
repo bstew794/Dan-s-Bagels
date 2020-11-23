@@ -38,14 +38,14 @@ def signUp(request):
     return render(request, 'bagels/signup.html', {'form': form})
 
 
+# Cancel an order from the current orders page
 def cancelOrder(request, order_id):
     order = Order.objects.get(pk=order_id)
 
     request.user.profile.account_balance += order.total_cost
     request.user.save()
 
-    order.is_fufilled = True
-    order.save()
+    order.delete()
 
     return redirect('current_orders')
 
