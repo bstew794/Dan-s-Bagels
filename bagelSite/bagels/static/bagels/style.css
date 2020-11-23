@@ -17,6 +17,10 @@ h2 {
 	text-align: center;
 }
 
+h4 {
+	color: white;
+}
+
 #top {
 	background-color: rgba(83, 55, 69, .95);
 	width:100%;
