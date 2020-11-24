@@ -1,3 +1,5 @@
+{% extends 'bagels/base.html' %}
+
 {% block content %}
     {% if perms.bagels.can_view_current_orders %}
     {% load string_to_list %}
