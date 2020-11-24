@@ -7,6 +7,7 @@ from django.utils import timezone
 from decimal import *
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.urls import reverse
+import decimal
 
 
 # Create your views here.
@@ -37,14 +38,15 @@ def signUp(request):
     return render(request, 'bagels/signup.html', {'form': form})
 
 
+# Cancel an order from the current orders page
+# we have duplicates of this
 def cancelOrder(request, order_id):
     order = Order.objects.get(pk=order_id)
 
     request.user.profile.account_balance += order.total_cost
     request.user.save()
 
-    order.is_fufilled = True
-    order.save()
+    order.delete()
 
     return redirect('current_orders')
 
@@ -141,9 +143,31 @@ class CurrentOrderListView(generic.ListView):
         return Order.objects.filter(is_fufilled=False)
 
 
+# Returns the profile page if the user is authenticated
 def profile(request):
     if request.user.is_authenticated:
         user = request.user
-        return render(request, 'bagels/profile.html', {"user": user})
+        orders = Order.objects.filter(customer_name=user.first_name)
+        return render(request, 'bagels/profile.html', {"user": user, "orders": orders})
     else:
         return redirect("login")
+
+
+# Edits the balance of a user from the profile page
+def edit(request):
+    add_balance = decimal.Decimal(request.POST.get('add_balance'))
+    request.user.profile.account_balance += add_balance
+    request.user.save()
+    return redirect("profile")
+
+
+# Remove / Cancel an order from the profile page
+def remove_order(request, order_id):
+    order = Order.objects.get(pk=order_id)
+    # Give a refund if order is not prepared and not fulfilled
+    if not order.is_prepared and not order.is_fufilled:
+        request.user.profile.account_balance += order.total_cost
+        request.user.save()
+    # Remove order from database
+    order.delete()
+    return redirect('profile')

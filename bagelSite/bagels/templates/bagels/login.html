@@ -1,8 +1,12 @@
+{% extends 'bagels/base.html' %}
+
+{% block tab_title %} Login {% endblock %}
+{% block page_title %}<h3>Login</h3>{% endblock %}
+
 {% block content %}
   {% if user.is_authenticated %}
     <p>You are already logged in, go back to the homepage.</p>
   {% else %}
-    <h2>Login</h2>
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}

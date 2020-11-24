@@ -10,11 +10,16 @@ body {
 h1 {
 	text-align: center;
 	/*color: white;*/
+	/*not a good idea hard to see -bstew794*/
 }
 
 h2 {
 	font-style: italic;
 	text-align: center;
+}
+
+h4 {
+	color: rgba(83, 55, 69, .95);
 }
 
 #top {
@@ -80,9 +85,9 @@ img {
 
 .center {
 	margin: auto;
-width: 50%;
-border: 3px solid red;
-padding: 10px;
+    width: 50%;
+    border: 3px solid red;
+    padding: 10px;
 }
 
 .column {
@@ -104,4 +109,27 @@ padding: 10px;
 }
 
 .minus-btn {
+}
+
+.page-title {
+    text-align: center;
+    color: rgba(83, 55, 69, .95);
+}
+
+.content {
+    background-color: rgb(255,255,255);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.content div{
+    display: inline-block;
+    margin: 2px;
+    padding: 5px;
+    border: 3px solid rgba(83, 55, 69, .95);
+}
+.content form{
+    margin: 5px;
 }

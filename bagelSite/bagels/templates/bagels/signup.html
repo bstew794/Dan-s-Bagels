@@ -1,5 +1,9 @@
+{% extends 'bagels/base.html' %}
+
+{% block tab_title %} Sign Up {% endblock %}
+{% block page_title %}<h3>Sign Up</h3>{% endblock %}
+
 {% block content %}
-  <h2>Sign Up</h2>
   <form method="post">
     {% csrf_token %}
     {% for field in form %}

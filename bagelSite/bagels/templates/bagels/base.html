@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+	<link rel ="stylesheet" type ="text/css" href ="{% static 'bagels/style.css' %}"/>
+	<link rel="shortcut icon" type="image/png" href="{% static 'bagels/favicon.ico' %}"/>
+	<title>{% block tab_title %} Base {% endblock %}</title>
+</head>
+<body>
+<div id="top">
+	<button class="site_link" type="button" name="button" onclick="location.href = '{% url 'home' %}'">
+		<h4>Menu</h4>
+	</button>
+	{% if user.is_authenticated %}
+		<button class="site_link" type="button" name="button" onclick="location.href='{% url 'profile' %}'">
+			<h4>Profile</h4>
+		</button>
+		<button class="site_link" type="button" name="button" onclick="location.href='{% url 'logout' %}'">
+			<h4>Log Out</h4>
+		</button>
+	{% else %}
+		<button class="site_link" type="button" name="button" onclick="location.href='{% url 'login' %}'">
+			<h4>Log In</h4>
+		</button>
+		<button class="site_link" type="button" name="button" onclick="location.href='{% url 'signup' %}'">
+			<h4>Sign Up</h4>
+		</button>
+	{% endif %}
+
+	{% if perms.bagels.can_view_current_orders %}
+	<button class="site_link" type="button" name="button" onclick="location.href='{% url 'current_orders' %}'">
+		<h4>Current Orders</h4>
+	</button>
+	{% endif %}
+</div>
+<img src="{% static 'bagels/logo.png' %}" class="logo">
+<div class="dividing"></div>
+<div class="page-title">{% block page_title %}{% endblock %}</div>
+<div class="content">
+	{% block content %}
+	{% endblock %}
+</div>
+</body>
+</html>

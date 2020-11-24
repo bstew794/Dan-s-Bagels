@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
+{% load string_to_list %}
 <head>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="{% static 'bagels/style.css' %}" />
 	<title>User Profile</title>
 </head>
 
@@ -11,6 +12,8 @@
     <h1>
         Welcome {{ user.username }}!
     </h1>
+
+    <!-- Account Information -->
     <h2>
         View your account information here
     </h2>
@@ -20,7 +23,43 @@
         Email: {{ user.email }} <br>
         Phone Number: {{ user.profile.phone_number }} <br>
         Member Number: {{ user.profile.member_number }} <br>
-        Account Balance: {{ user.profile.account_balance }} <br>
+        Account Balance: ${{ user.profile.account_balance }} <br>
+    </h3>
+
+    <!-- Edit Account Information -->
+    <h2>
+        Edit account information here
+    </h2>
+    <h3>
+        <form action="{% url 'edit' %}" method="post">
+	    {% csrf_token %}
+            Add Balance to your Account:
+            <input type="number" name="add_balance" value="0">
+            <br>
+            <input type="submit" value="Submit Changes">
+        </form>
+    </h3>
+
+    <!-- View Account Orders -->
+    <h2>
+        View your orders here
+    </h2>
+    <h3>
+        {% for order in orders %}
+            {% string_to_list order.items as item_list %}
+            Order {{ order.id }} -- ${{ order.total_cost }} -- Pickup on {{ order.pickup_time }}
+            <ul>
+            {% for item in item_list %}
+                <li>{{ item }}</li>
+            {% endfor %}
+            </ul>
+            {% if not order.is_prepared and not order.is_fufilled %}
+                <button onclick="location.href = '{% url 'remove_order' order.id %}'">Refund Order</button>
+            {% else %}
+                <button onclick="location.href = '{% url 'remove_order' order.id %}'">Remove Order</button>
+            {% endif %}
+            <br><br>
+        {% endfor %}
     </h3>
 </body>
 
