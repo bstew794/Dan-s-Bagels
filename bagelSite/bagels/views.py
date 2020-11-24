@@ -121,19 +121,22 @@ def placeOrder(request):
         return render(request, 'home', context)
 
     else:
-        cost = 0.00
-        for o in object_list:
-            cost += float(o.price)
-            o.stock -= 1
-            o.save()
-        string_list = string_list.join([elem.name for elem in object_list])
+        if len(object_list) <= 0:
+            return redirect('home')
+        else:
+            cost = 0.00
+            for o in object_list:
+                cost += float(o.price)
+                o.stock -= 1
+                o.save()
+            string_list = string_list.join([elem.name for elem in object_list])
 
-        new_order = Order(customer=current_user,
-                          customer_name=request.user.first_name, pickup_time=timezone.now(),
-                          items=string_list, total_cost=cost, is_prepared=False, is_fufilled=False)
+            new_order = Order(customer=current_user,
+                              customer_name=request.user.first_name, pickup_time=timezone.now(),
+                              items=string_list, total_cost=cost, is_prepared=False, is_fufilled=False)
 
-        new_order.save()
-        return HttpResponseRedirect(reverse('profile'))
+            new_order.save()
+            return HttpResponseRedirect(reverse('profile'))
 
 
 class CurrentOrderListView(generic.ListView):
