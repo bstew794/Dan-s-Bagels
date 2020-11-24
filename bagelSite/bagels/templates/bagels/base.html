@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+	<link rel = "stylesheet" type = "text/css" href = "{% static 'bagels/style.css' %}" />
+</head>
+<body>
+<div id="top">
+	<button class="site_link" type="button" name="button" onclick="location.href = '{% url 'home' %}'">
+	<h4>Menu</h4>
+	</button>
+	<button class="site_link" type="button" name="button" onclick="location.href='{% url 'login' %}'">
+	<h4>Log In</h4>
+	</button>
+	<button class="site_link" type="button" name="button" onclick="location.href='{% url 'profile' %}'">
+	<h4>Profile</h4>
+	</button>
+	<button class="site_link" type="button" name="button" onclick="location.href='{% url 'signup' %}'">
+	<h4>Sign Up</h4>
+	</button>
+</div>
+<img src="{% static 'bagels/logo.png' %}" class="logo">
+<div class="dividing"></div>
+<div>
+	{% block content %}
+	{% endblock %}
+</div>
+</body>
+</html>
