@@ -103,10 +103,12 @@ def placeOrder(request):
         current_user = Profile.objects.filter(user=request.user).first()
         chosen_items = request.POST.getlist('item')
         object_list = []
+
         for item in chosen_items:
             if item != 'None':
                 i = InventoryItem.objects.get(pk=item)
                 object_list.append(i)
+
 
     except (KeyError, Menu_Item.DoesNotExist):
         ba_list = InventoryItem.objects.filter(type='ba')

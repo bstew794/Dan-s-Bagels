@@ -37,6 +37,7 @@ h4 {
 }
 
 .post {
+	display: inline-block;
 	background: rgba(176, 113, 86, .9);
 	margin:4%;
 	/*margin-top:10%;*/
