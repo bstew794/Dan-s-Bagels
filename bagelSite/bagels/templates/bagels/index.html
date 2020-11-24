@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+{% load my_filters %}
 <head>
 	<meta charset="UTF-8">
 	<link rel = "stylesheet" type = "text/css" href = "{% static 'bagels/style.css' %}" />
@@ -14,49 +15,66 @@
 	<div>
 	<div class="dividing">
 	</div>
-	<h1>Menu</h1>
-	<form action="{% url 'purchase' %}" method="post">
-	{% csrf_token %}
+
 
 
 	<span class="post">
 		<h2>Bagels</h2>
 		<img src="{% static 'bagels/bagel.jpg' %}" class="thumbnail">
-		<br>
-		{% if ba %}
-
-		{% for item in ba %}
-		<div class="">
-			<input type="checkbox" name="item" id="item{{ forloop.counter }}" value="{{ item.id }}">
-			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
-		</div>
-		{% endfor %}
-		{% else %}
-		<h6>No Items Currently</h6>
-		{% endif %}
 	</span>
 
 	<span class="post">
 		<h2>Schmears</h2>
 		<img src="{% static 'bagels/schmear.jpg' %}" class="thumbnail">
-		<br>
-		{% if sc %}
-
-		{% for item in sc %}
-		<div class="">
-			<input type="checkbox" name="item" id="item{{ forloop.counter }}" value="{{ item.id }}">
-			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
-		</div>
-		{% endfor %}
-		{% else %}
-		<h6>No Items Currently</h6>
-		{% endif %}
 	</span>
 
 	<span class="post">
 		<h2>Sammiches</h2>
 		<img src="{% static 'bagels/sammich.jpg' %}" class="thumbnail">
-		<br>
+	</span>
+
+	<span class="post">
+		<h2>Beverages</h2>
+		<img src="{% static 'bagels/beverage.jpg' %}" class="thumbnail">
+	</span>
+
+		<h1>Menu</h1>
+
+	<div class="" style="text-align:center">
+		<form class="" action="{% url 'specify' %}" method="post">
+			{% csrf_token %}
+			<input type="number" name="size" value="size" id="size" min="0">
+			<input type="submit" name="howMany" value="How Many Bagels?">
+		</form>
+	</div>
+
+
+	<form action="{% url 'purchase' %}" method="post">
+	{% csrf_token %}
+
+	{% for i in num|times %}
+	<span class="post">
+		<h3>Choose a Bagel</h3>
+		<select class="" name="item" id="item{{ i }}" value="{{ item.id }}">
+			<option value="None"> None </option>
+			{% for item in ba %}
+			<option value="{{ item.id }}"> {{ item.name }}</option>
+			{% endfor %}
+		</select>
+	</span>
+
+	<span class="post">
+		<h3>Add a Schmear</h3>
+		<select class="" name="item" id="item{{ i }}" value="{{ item.id }}">
+			<option value="None"> None </option>
+			{% for item in sc %}
+			<option value="{{ item.id }}"> {{ item.name }}</option>
+			{% endfor %}
+		</select>
+	</span>
+
+	<span class="post">
+		<h3>Make it a Sandwich</h3>
 		{% if sa %}
 
 		{% for item in sa %}
@@ -64,29 +82,25 @@
 			<input type="checkbox" name="item" id="item{{ forloop.counter }}" value="{{ item.id }}">
 			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
 		</div>
-
 		{% endfor %}
+
 		{% else %}
 		<h6>No Items Currently</h6>
 		{% endif %}
 	</span>
 
 	<span class="post">
-		<h2>Beverages</h2>
-		<img src="{% static 'bagels/beverage.jpg' %}" class="thumbnail">
-		<br>
-		{% if be %}
-
-		{% for item in be %}
-		<div class="">
-			<input type="checkbox" name="item" id="item{{ forloop.counter }}" value="{{ item.id }}">
-			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
-		</div>
-		{% endfor %}
-		{% else %}
-		<h6>No Items Currently</h6>
-		{% endif %}
+		<h3>Add a Beverage</h3>
+		<select class="" name="item" id="item{{ i }}" value="{{ item.id }}">
+			<option value="None"> None </option>
+			{% for item in be %}
+			<option value="{{ item.id }}"> {{ item.name }}</option>
+			{% endfor %}
+		</select>
 	</span>
+
+	<hr>
+	{% endfor %}
 
 	{% if user.is_authenticated %}
 	<input type="submit" value="Purchase">

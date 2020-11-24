@@ -74,9 +74,26 @@ def home(request):
     sa_list = InventoryItem.objects.filter(type='sa')
 
     context = {'ba': ba_list, 'be': be_list, 'sc': sc_list, 'sa': sa_list,
-               'user': request.user}
+               'user': request.user, 'num' : 1}
     return render(request, 'bagels/index.html', context)
 
+
+def specify(request):
+    num = request.POST.get('size')
+    try:
+        num = int(num)
+    except:
+        return redirect('home')
+
+    if num >= 0:
+            ba_list = InventoryItem.objects.filter(type='ba')
+            be_list = InventoryItem.objects.filter(type='be')
+            sc_list = InventoryItem.objects.filter(type='sc')
+            sa_list = InventoryItem.objects.filter(type='sa')
+
+            context = {'ba': ba_list, 'be': be_list, 'sc': sc_list, 'sa': sa_list,
+                       'user': request.user, 'num' : num}
+            return render(request, 'bagels/index.html', context)
 
 def placeOrder(request):
     string_list = ', '
@@ -85,8 +102,9 @@ def placeOrder(request):
         chosen_items = request.POST.getlist('item')
         object_list = []
         for item in chosen_items:
-            i = InventoryItem.objects.get(pk=item)
-            object_list.append(i)
+            if item != 'None':
+                i = InventoryItem.objects.get(pk=item)
+                object_list.append(i)
 
     except (KeyError, Menu_Item.DoesNotExist):
         ba_list = InventoryItem.objects.filter(type='ba')
@@ -95,13 +113,15 @@ def placeOrder(request):
         sa_list = InventoryItem.objects.filter(type='sa')
 
         context = {'ba': ba_list, 'be': be_list, 'sc': sc_list, 'sa': sa_list,
-                   'user': request.user}
+                   'user': request.user, 'num' : 1}
         return render(request, 'home', context)
 
     else:
         cost = 0.00
         for o in object_list:
             cost += float(o.price)
+            o.stock -= 1
+            o.save()
         string_list = string_list.join([elem.name for elem in object_list])
 
         new_order = Order(customer=current_user,
