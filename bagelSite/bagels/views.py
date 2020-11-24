@@ -39,6 +39,7 @@ def signUp(request):
 
 
 # Cancel an order from the current orders page
+# we have duplicates of this
 def cancelOrder(request, order_id):
     order = Order.objects.get(pk=order_id)
 

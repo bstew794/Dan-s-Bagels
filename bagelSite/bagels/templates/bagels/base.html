@@ -3,7 +3,9 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-	<link rel = "stylesheet" type = "text/css" href = "{% static 'bagels/style.css' %}" />
+	<link rel ="stylesheet" type ="text/css" href ="{% static 'bagels/style.css' %}"/>
+	<link rel="shortcut icon" type="image/png" href="{% static 'bagels/favicon.ico' %}"/>
+	<title>{% block tab_title %} Base {% endblock %}</title>
 </head>
 <body>
 <div id="top">
@@ -34,6 +36,7 @@
 </div>
 <img src="{% static 'bagels/logo.png' %}" class="logo">
 <div class="dividing"></div>
+<div class="page-title">{% block page_title %}{% endblock %}</div>
 <div class="content">
 	{% block content %}
 	{% endblock %}
