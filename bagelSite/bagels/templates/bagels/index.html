@@ -74,7 +74,7 @@
 		<select class="" name="item" id="item{{ i }}" value="{{ item.id }}">
 			<option value="None"> None </option>
 			{% for item in ba %}
-			<option value="{{ item.id }}"> {{ item.name }}</option>
+			<option value="{{ item.id }}"> {{ item.name }} - {{ item.price }}</option>
 			{% endfor %}
 		</select>
 	</span>
@@ -84,7 +84,7 @@
 		<select class="" name="item" id="item{{ i }}" value="{{ item.id }}">
 			<option value="None"> None </option>
 			{% for item in sc %}
-			<option value="{{ item.id }}"> {{ item.name }}</option>
+			<option value="{{ item.id }}"> {{ item.name }} - {{ item.price }}</option>
 			{% endfor %}
 		</select>
 	</span>
@@ -96,7 +96,7 @@
 		{% for item in sa %}
 		<div class="">
 			<input type="checkbox" name="item" id="item{{ forloop.counter }}" value="{{ item.id }}">
-			<label for="item{{ forloop.counter }}">{{ item.name}}</label>
+			<label for="item{{ forloop.counter }}">{{ item.name }} - {{ item.price }}</label>
 		</div>
 		{% endfor %}
 
@@ -110,7 +110,7 @@
 		<select class="" name="item" id="item{{ i }}" value="{{ item.id }}">
 			<option value="None"> None </option>
 			{% for item in be %}
-			<option value="{{ item.id }}"> {{ item.name }}</option>
+			<option value="{{ item.id }}"> {{ item.name }} - {{ item.price }}</option>
 			{% endfor %}
 		</select>
 	</span>
