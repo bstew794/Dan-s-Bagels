@@ -9,7 +9,7 @@
 
         {% if current_orders_list %}
             {% for order in current_orders_list %}
-                <div>
+                <div class="order">
                     <h4>{{ order.customer_name }}</h4>
                     <h4>{{ order.pickup_time}}</h4>
                     {% string_to_list order.items as item_list %}

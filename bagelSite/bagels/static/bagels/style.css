@@ -9,8 +9,6 @@ body {
 
 h1 {
 	text-align: center;
-	/*color: white;*/
-	/*not a good idea hard to see -bstew794*/
 }
 
 h2 {
@@ -122,15 +120,17 @@ img {
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 10px
 }
 
-.content div{
+.content form {
+    margin: 5px;
+}
+
+.content .order {
     display: inline-block;
     margin: 2px;
     padding: 5px;
     border: 3px solid rgba(83, 55, 69, .95);
-}
-.content form{
-    margin: 5px;
 }
