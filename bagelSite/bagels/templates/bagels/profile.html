@@ -18,12 +18,12 @@
         View your account information here
     </h2>
     <h3>
-        First Name: {{ user.first_name }} <br>
-        Last Name:  {{ user.last_name }} <br>
-        Email: {{ user.email }} <br>
-        Phone Number: {{ user.profile.phone_number }} <br>
-        Member Number: {{ user.profile.member_number }} <br>
-        Account Balance: ${{ user.profile.account_balance }} <br>
+        First Name:       {{ user.first_name }} <br>
+        Last Name:        {{ user.last_name }} <br>
+        Email:            {{ user.email }} <br>
+        Phone Number:     {{ user.profile.phone_number }} <br>
+        Member Number:    {{ user.profile.member_number }} <br>
+        Account Balance:  ${{ user.profile.account_balance }} <br>
     </h3>
 
     <!-- Edit Account Information -->
@@ -61,6 +61,24 @@
             <br><br>
         {% endfor %}
     </h3>
+
+    <!-- Manager Information -->
+    {% if perms.bagels.can_manage %}
+    <h2>
+        Manager info here
+    </h2>
+    <h3>
+        <form action="{% url 'add_stock' %}" method="post">
+            {% csrf_token %}
+            {% for item in inventory %}
+                {{ item }}
+                <input type="number" name="{{ item.name }}" value="0">
+                <br>
+            {% endfor %}
+            <input type="submit" value="Submit Changes">
+        </form>
+    </h3>
+    {% endif %}
 </body>
 
 </html>

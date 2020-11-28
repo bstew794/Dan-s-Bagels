@@ -24,7 +24,8 @@ def signUp(request):
             user = form.save()
             user.refresh_from_db()
             user.profile.phone_number = form.cleaned_data.get('phone_number')
-            user.profile.member_number = user.profile.phone_number + str(int(round(user.date_joined.timestamp() * 1000)))
+            user.profile.member_number = user.profile.phone_number + str(
+                int(round(user.date_joined.timestamp() * 1000)))
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
@@ -76,7 +77,7 @@ def home(request):
     sa_list = InventoryItem.objects.filter(type='sa')
 
     context = {'ba': ba_list, 'be': be_list, 'sc': sc_list, 'sa': sa_list,
-               'user': request.user, 'num' : 1}
+               'user': request.user, 'num': 1}
     return render(request, 'bagels/index.html', context)
 
 
@@ -88,14 +89,15 @@ def specify(request):
         return redirect('home')
 
     if num >= 0:
-            ba_list = InventoryItem.objects.filter(type='ba')
-            be_list = InventoryItem.objects.filter(type='be')
-            sc_list = InventoryItem.objects.filter(type='sc')
-            sa_list = InventoryItem.objects.filter(type='sa')
+        ba_list = InventoryItem.objects.filter(type='ba')
+        be_list = InventoryItem.objects.filter(type='be')
+        sc_list = InventoryItem.objects.filter(type='sc')
+        sa_list = InventoryItem.objects.filter(type='sa')
 
-            context = {'ba': ba_list, 'be': be_list, 'sc': sc_list, 'sa': sa_list,
-                       'user': request.user, 'num' : num}
-            return render(request, 'bagels/index.html', context)
+        context = {'ba': ba_list, 'be': be_list, 'sc': sc_list, 'sa': sa_list,
+                   'user': request.user, 'num': num}
+        return render(request, 'bagels/index.html', context)
+
 
 def placeOrder(request):
     string_list = ', '
@@ -117,7 +119,7 @@ def placeOrder(request):
         sa_list = InventoryItem.objects.filter(type='sa')
 
         context = {'ba': ba_list, 'be': be_list, 'sc': sc_list, 'sa': sa_list,
-                   'user': request.user, 'num' : 1}
+                   'user': request.user, 'num': 1}
         return render(request, 'home', context)
 
     else:
@@ -153,7 +155,8 @@ def profile(request):
     if request.user.is_authenticated:
         user = request.user
         orders = Order.objects.filter(customer_name=user.first_name)
-        return render(request, 'bagels/profile.html', {"user": user, "orders": orders})
+        inventory = InventoryItem.objects.filter()
+        return render(request, 'bagels/profile.html', {"user": user, "orders": orders, "inventory": inventory})
     else:
         return redirect("login")
 
@@ -176,3 +179,12 @@ def remove_order(request, order_id):
     # Remove order from database
     order.delete()
     return redirect('profile')
+
+
+# Add stock to InventoryItems
+def add_stock(request):
+    inventory_items = InventoryItem.objects.all()
+    for item in inventory_items:
+        item.stock += int(request.POST.get(item.name))
+        item.save()
+    return redirect("profile")
