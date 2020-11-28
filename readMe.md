@@ -40,8 +40,6 @@ place orders,
 manage orders,
 manage funds, 
 view orders,
-
-https://docs.google.com/presentation/d/1DKHZ8tNbGqf3pFJLtiWSkJgr84a9BjMG5cAIYaOnU_c/edit?usp=sharing
 change order status,
 manage inventory.
 
@@ -52,3 +50,7 @@ For best results, the system testing will be done by a human user. This user wil
 -Other development notes, as needed
 
 All file names will be written in lower-camelcase.
+
+
+Google Slides Presentation Link
+https://docs.google.com/presentation/d/1DKHZ8tNbGqf3pFJLtiWSkJgr84a9BjMG5cAIYaOnU_c/edit?usp=sharing
