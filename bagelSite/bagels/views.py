@@ -40,7 +40,6 @@ def signUp(request):
 
 
 # Cancel an order from the current orders page
-# we have duplicates of this
 def cancelOrder(request, order_id):
     order = Order.objects.get(pk=order_id)
 
@@ -99,6 +98,7 @@ def specify(request):
         return render(request, 'bagels/index.html', context)
 
 
+
 def placeOrder(request):
     string_list = ', '
     try:
@@ -110,7 +110,6 @@ def placeOrder(request):
             if item != 'None':
                 i = InventoryItem.objects.get(pk=item)
                 object_list.append(i)
-
 
     except (KeyError, Menu_Item.DoesNotExist):
         ba_list = InventoryItem.objects.filter(type='ba')

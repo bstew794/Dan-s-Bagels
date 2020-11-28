@@ -12,6 +12,12 @@
 	<button class="site_link" type="button" name="button" onclick="location.href = '{% url 'home' %}'">
 		<h4>Menu</h4>
 	</button>
+	{% if perms.bagels.can_view_current_orders %}
+		<button class="site_link" type="button" name="button" onclick="location.href='{% url 'current_orders' %}'">
+			<h4>Current Orders</h4>
+		</button>
+	{% endif %}
+
 	{% if user.is_authenticated %}
 		<button class="site_link" type="button" name="button" onclick="location.href='{% url 'profile' %}'">
 			<h4>Profile</h4>
@@ -26,12 +32,6 @@
 		<button class="site_link" type="button" name="button" onclick="location.href='{% url 'signup' %}'">
 			<h4>Sign Up</h4>
 		</button>
-	{% endif %}
-
-	{% if perms.bagels.can_view_current_orders %}
-	<button class="site_link" type="button" name="button" onclick="location.href='{% url 'current_orders' %}'">
-		<h4>Current Orders</h4>
-	</button>
 	{% endif %}
 </div>
 <img src="{% static 'bagels/logo.png' %}" class="logo">

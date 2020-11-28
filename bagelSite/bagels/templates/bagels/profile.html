@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-{% load static %}
-{% load string_to_list %}
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="{% static 'bagels/style.css' %}" />
-	<title>User Profile</title>
-</head>
+{% extends 'bagels/base.html' %}
 
-<body>
+{% block tab_title %} User Profile {% endblock %}
+{% block page_title %}<h1>User Profile</h1>{% endblock %}
+
+{% block content %}
+    {% load string_to_list %}
     <h1>
         Welcome {{ user.username }}!
     </h1>
@@ -17,6 +13,7 @@
     <h2>
         View your account information here
     </h2>
+    <hr>
     <h3>
         First Name:       {{ user.first_name }} <br>
         Last Name:        {{ user.last_name }} <br>
@@ -30,6 +27,7 @@
     <h2>
         Edit account information here
     </h2>
+    <hr>
     <h3>
         <form action="{% url 'edit' %}" method="post">
 	    {% csrf_token %}
@@ -44,20 +42,28 @@
     <h2>
         View your orders here
     </h2>
-    <h3>
-        {% for order in orders %}
+    <hr>
+    {% for order in orders %}
+        <div class="order">
             {% string_to_list order.items as item_list %}
-            Order {{ order.id }} -- ${{ order.total_cost }} -- Pickup on {{ order.pickup_time }}
+            <h3>Order {{ order.id }} -- ${{ order.total_cost }} -- Pickup on {{ order.pickup_time }}</h3>
             <ul>
-            {% for item in item_list %}
-                <li>{{ item }}</li>
-            {% endfor %}
+                {% for item in item_list %}
+                    <li>{{ item }}</li>
+                {% endfor %}
             </ul>
+            {% if order.is_prepared %}
+                <h6>PREPARED</h6>
+            {% else %}
+                <h6>PREPARING</h6>
+            {% endif %}
+
             {% if not order.is_prepared and not order.is_fufilled %}
                 <button onclick="location.href = '{% url 'remove_order' order.id %}'">Refund Order</button>
             {% else %}
                 <button onclick="location.href = '{% url 'remove_order' order.id %}'">Remove Order</button>
             {% endif %}
+<<<<<<< HEAD
             <br><br>
         {% endfor %}
     </h3>
@@ -82,3 +88,8 @@
 </body>
 
 </html>
+=======
+        </div>
+    {% endfor %}
+{% endblock %}
+>>>>>>> 599d46f0baa168f8d915978b70df5e7888a358da
