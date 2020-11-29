@@ -54,3 +54,12 @@ All file names will be written in lower-camelcase.
 
 Google Slides Presentation Link
 https://docs.google.com/presentation/d/1DKHZ8tNbGqf3pFJLtiWSkJgr84a9BjMG5cAIYaOnU_c/edit?usp=sharing
+
+Unit Testing Procedures:
+Run the command: $ python manage.py test
+
+Database Notes
+-contains all 25 customers
+-contains all 4 employees
+-contains a superuser account "bbau"
+**ALL USER PASSWORDS ARE: Pass123!**
