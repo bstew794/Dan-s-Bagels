@@ -16,7 +16,7 @@ class SignUpForm(UserCreationForm):
 
 class EditProfileForm(UserChangeForm):
     password = None
-    phone_number = forms.CharField(max_length=15, help_text='Required. Format: XXXXXXXXXXXXXXX')
+    phone_number = forms.CharField(max_length=15)
 
     class Meta:
         model = User
