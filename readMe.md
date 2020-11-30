@@ -25,7 +25,7 @@ Run the commands:
 
 $ python manage.py runserver
 
-The site should be hosted at http://localhost:8000/BagelTest/
+The site should be hosted at http://localhost:8000/bagels/
 
 ## Sprint Documentation
 Sprint and SCRUM information found in /docs/Planning
