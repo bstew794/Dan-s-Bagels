@@ -104,6 +104,7 @@ def placeOrder(request):
     try:
         current_user = Profile.objects.filter(user=request.user).first()
         chosen_items = request.POST.getlist('item')
+        chosen_date = request.POST['Enter Pickup Time']
         object_list = []
 
         for item in chosen_items:
@@ -111,7 +112,7 @@ def placeOrder(request):
                 i = InventoryItem.objects.get(pk=item)
                 object_list.append(i)
 
-    except (KeyError, Menu_Item.DoesNotExist):
+    except (KeyError, InventoryItem.DoesNotExist):
         ba_list = InventoryItem.objects.filter(type='ba')
         be_list = InventoryItem.objects.filter(type='be')
         sc_list = InventoryItem.objects.filter(type='sc')
@@ -122,6 +123,8 @@ def placeOrder(request):
         return render(request, 'home', context)
 
     else:
+        if chosen_date is None or chosen_date == "":
+            chosen_date = timezone.now();
         if len(object_list) <= 0:
             return redirect('home')
         else:
@@ -131,9 +134,13 @@ def placeOrder(request):
                 o.stock -= 1
                 o.save()
             string_list = string_list.join([elem.name for elem in object_list])
+            final_cost = decimal.Decimal(cost)
+            request.user.profile.account_balance -= final_cost
+            request.user.save()
+
 
             new_order = Order(customer=current_user,
-                              customer_name=request.user.first_name, pickup_time=timezone.now(),
+                              customer_name=request.user.first_name, pickup_time=chosen_date,
                               items=string_list, total_cost=cost, is_prepared=False, is_fufilled=False)
 
             new_order.save()

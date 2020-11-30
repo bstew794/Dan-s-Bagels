@@ -3,9 +3,9 @@ High Fidelity Prototype
 To run this program:
 
     $ python manage.py makemigrations
-    
+
     $ python manage.py migrate
-    
+
     $ python manage.py runserver
 
 View the webpage [here.](http://localhost:8000/BagelTest/)

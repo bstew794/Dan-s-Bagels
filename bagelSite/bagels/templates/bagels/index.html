@@ -74,6 +74,9 @@
 	{% csrf_token %}
 
 	{% for i in num|times %}
+	<div class="contains">
+
+
 	<span class="post">
 		<h3>Choose a Bagel</h3>
 		<select class="" name="item" id="item{{ i }}" value="{{ item.id }}">
@@ -119,12 +122,22 @@
 			{% endfor %}
 		</select>
 	</span>
+	</div>
 
 	<hr>
 	{% endfor %}
 
+	<div class="center contains">
+		<h4>
+			<input type="datetime-local" name="Enter Pickup Time" id="pickup" value="">
+		</h4>
+	</div>
+
 	{% if user.is_authenticated %}
-	<input type="submit" value="Purchase">
+	<div class="center">
+			<input type="submit" value="Purchase">
+	</div>
+
 	{% else %}
 	<div class="center">
 		<h3> <a href="{% url login }"></a> Please log in to order </h3>
