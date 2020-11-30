@@ -1,13 +1,14 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.views import generic
-from .forms import SignUpForm, EditProfileForm
-from .models import Order, InventoryItem, Profile
+from django.contrib.auth.forms import PasswordChangeForm
 from django.utils import timezone
 from decimal import *
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.urls import reverse
 import decimal
+from .forms import SignUpForm, EditProfileForm
+from .models import Order, InventoryItem, Profile
 
 
 # Create your views here.
@@ -218,3 +219,21 @@ def editProfile(request):
         form = EditProfileForm(instance=request.user, initial={'phone_number': request.user.profile.phone_number})
 
     return render(request, 'bagels/edit_profile.html', {'form': form})
+
+
+# change password while logged in
+def changePassword(request):
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+
+    else:
+        form = PasswordChangeForm(user=request.user)
+
+    return render(request, 'bagels/change_password.html', {'form': form})

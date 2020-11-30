@@ -25,6 +25,7 @@ urlpatterns = [
     path('index', views.home, name='home'),
     path("profile", views.profile, name="profile"),
     path('profile/edit', views.editProfile, name='edit_profile'),
+    path('profile/change_password', views.changePassword, name='change_password'),
     path("purchase", views.placeOrder, name="purchase"),
     path("specify", views.specify, name="specify"),
     path("edit", views.edit, name="edit"),
