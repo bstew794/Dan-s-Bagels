@@ -1,7 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.views import generic
-from .forms import SignUpForm
+from .forms import SignUpForm, EditProfileForm
 from .models import Order, InventoryItem, Profile
 from django.utils import timezone
 from decimal import *
@@ -36,7 +36,7 @@ def signUp(request):
     else:
         form = SignUpForm()
 
-    return render(request, 'bagels/signup.html', {'form': form})
+    return render(request, 'bagels/signup', {'form': form})
 
 
 # Cancel an order from the current orders page
@@ -194,3 +194,27 @@ def add_stock(request):
         item.stock += int(request.POST.get(item.name))
         item.save()
     return redirect("profile")
+
+
+# allow user to change credentials
+def editProfile(request):
+    if not request.user.is_authenticated:
+        return redirect('home')
+
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()
+            user.profile.phone_number = form.cleaned_data.get('phone_number')
+            user.profile.member_number = user.profile.phone_number + str(
+                int(round(user.date_joined.timestamp() * 1000)))
+            user.save()
+
+            return redirect('profile')
+
+    else:
+        form = EditProfileForm(instance=request.user, initial={'phone_number': request.user.profile.phone_number})
+
+    return render(request, 'bagels/edit_profile.html', {'form': form})
