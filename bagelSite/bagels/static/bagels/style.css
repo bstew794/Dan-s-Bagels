@@ -119,6 +119,12 @@ img {
 .minus-btn {
 }
 
+.site_link {
+	background-color: rgba(83, 55, 69, 0);
+	height: 100%;
+	margin-left:5px;
+}
+
 .page-title {
     text-align: center;
     color: rgba(83, 55, 69, .95);
