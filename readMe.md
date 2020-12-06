@@ -44,5 +44,8 @@ Run the command: $ python manage.py test
 
 For best results, most of the system testing will be done by a human user. This user will go through the methods listed in unit testing in any order, to test each funtion as well as ensuring that the system will not crash in the interim.
 
-## Google Slides Presentation Link
+## Project Presentation
+
+Project materials located in /docs/Presentation
+
 https://docs.google.com/presentation/d/1DKHZ8tNbGqf3pFJLtiWSkJgr84a9BjMG5cAIYaOnU_c/edit?usp=sharing
